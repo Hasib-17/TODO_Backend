@@ -8,6 +8,14 @@ app.use(express.json()); // ✅ Add middleware to parse JSON request body
 
 const PORT=process.env.PORT || 3000;
 // ✅ Function now returns the validation result
+
+const jsonData={
+    name:"Hasibur",
+    age:"24",
+    university:"PSTU",
+    sem:"L-4__S-1",
+    session:"2019-2020"
+}
 function validateInput(obj) {
     const schema = zod.object({
         email: zod.string().email(),
@@ -30,6 +38,9 @@ app.post('/admin', (req, res) => {
 
 });
 
+app.get('/info',(req,res)=>{
+    res.json(jsonData);
+})
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${PORT}...`);
 });
